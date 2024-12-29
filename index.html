@@ -47,6 +47,9 @@
         .btn-register {
             background: #f39c12;
         }
+        .btn-view-credits {
+            background: #3498db;
+        }
         .btn:hover {
             opacity: 0.8;
         }
@@ -58,6 +61,32 @@
             height: 500px;
             border: none;
         }
+        /* Email Form for Credits */
+        .credits-form-container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: none;
+        }
+        .credits-form-container input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .credits-form-container button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .credits-form-container button:hover {
+            background-color: #2980b9;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +95,7 @@
         <p>Register yourself and download the app to experience the power of AI.</p>
         <a href="#" class="btn btn-download">DOWNLOAD APK</a>
         <a href="#" class="btn btn-register" id="register-button">REGISTER YOURSELF</a>
+        <a href="#" class="btn btn-view-credits" id="view-credits-button">VIEW CREDITS</a> <!-- View Credits button -->
     </div>
     <div class="form-container" id="form-container">
         <iframe 
@@ -73,10 +103,37 @@
             id="form-frame"></iframe>
     </div>
 
+    <!-- Credits Form -->
+    <div class="credits-form-container" id="credits-form-container">
+        <h2>Enter your Email to View Credits</h2>
+        <input type="email" id="email" placeholder="Enter your email" />
+        <button id="confirm-credits-button">Confirm</button>
+        <p id="credits-message" style="color: #fff; font-size: 1.2em; margin-top: 20px;"></p> <!-- Credits message will show here -->
+    </div>
+
     <script>
+        // Show registration form
         document.getElementById('register-button').addEventListener('click', function() {
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('form-container').style.display = 'block';
+        });
+
+        // Show view credits form
+        document.getElementById('view-credits-button').addEventListener('click', function() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('credits-form-container').style.display = 'block';
+        });
+
+        // Handle the email submission for credits
+        document.getElementById('confirm-credits-button').addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            if (email) {
+                // This is where you'd fetch the user's credits from a database or an API
+                // For this example, we'll simulate a response
+                document.getElementById('credits-message').textContent = `Credits for ${email}: 100`;
+            } else {
+                document.getElementById('credits-message').textContent = 'Please enter a valid email.';
+            }
         });
 
         // Remove JotForm branding
